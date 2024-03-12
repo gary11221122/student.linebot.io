@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>高中生學習輔助系統</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .question-list, .generated-questions {
+            list-style-type: none;
+            padding: 0;
+        }
+        .question-list li, .generated-questions li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>樂育通</h1>
+        </header>
+        <section>
+            <h2>歷屆試題</h2>
+            <div>
+                <label for="year">選擇年份:</label>
+                <select id="year">
+                    <!-- 年份選項 -->
+                </select>
+                <label for="subject">選擇科目:</label>
+                <select id="subject">
+                    <!-- 科目選項 --> 
+                </select>
+            </div>
+            <button id="searchButton">搜索</button>
+        </section>
+        <section>
+            <h2>AI生成的新題目</h2>
+            <div>
+                <label for="genYear">選擇年份:</label>
+                <select id="genYear">
+                    <!-- 年份選項，使用JavaScript动态生成 -->
+                </select>
+                <label for="genSubject">選擇科目:</label>
+                <select id="genSubject">
+                    <!-- 科目選項，使用JavaScript动态生成 -->
+                </select>
+            </div>
+            <button id="generateBtn">生成題目</button>
+            <ul id="newQuestions" class="generated-questions"></ul>
+        </section>
+    </main>
+    <script>
+        // 假设的年份和科目数据
+        const years = ['113', '112', '111', '110', '109', '108', '107', '106', '105', '104'];
+        const subjects = ['國文', '英文', '數學A', '數學B', '社會', '自然'];
+
+        function initSelectOptions(selectId, options) {
+            const select = document.getElementById(selectId);
+            options.forEach(option => {
+                const optElement = document.createElement('option');
+                optElement.value = option;
+                optElement.textContent = option;
+                select.appendChild(optElement);
+            });
+        }
+
+        initSelectOptions('year', years);
+        initSelectOptions('subject', subjects);
+        // 复制上面的选项到AI生成新题目的部分
+        initSelectOptions('genYear', years);
+        initSelectOptions('genSubject', subjects);
+
+        document.getElementById('searchButton').addEventListener('click', function() {
+            var selectedSubject = document.getElementById('subject').value;
+            var selectedYear = document.getElementById('year').value;
+            alert('你選擇了 ' + selectedYear + ' 年的 ' + selectedSubject + ' 試題');
+        });
+
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            var selectedYear = document.getElementById('genYear').value;
+            var selectedSubject = document.getElementById('genSubject').value;
+            alert('將為你生成 ' + selectedYear + ' 年的 ' + selectedSubject + ' 科目的新題目');
+            // 在这里可以添加生成新题目的逻辑
+        });
+    </script>
+</body>
+</html>
